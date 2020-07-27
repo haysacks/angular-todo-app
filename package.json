@@ -1,5 +1,5 @@
 {
-  "name": "angular-test-app",
+  "name": "angular-todo-app",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -12,6 +12,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~10.0.5",
+    "@angular/cdk": "^10.1.0",
     "@angular/common": "~10.0.5",
     "@angular/compiler": "~10.0.5",
     "@angular/core": "~10.0.5",

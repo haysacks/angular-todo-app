@@ -1,0 +1,59 @@
+<h1 *ngIf="isAddMode">Add Todo</h1>
+<h1 *ngIf="!isAddMode">Edit Todo</h1>
+<div class="card">
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group row">
+                <label for="title" class="col-sm-2 col-form-label">Title</label>
+                <div class="col-sm-10">
+                    <input type="text" formControlName="title" class="form-control" [ngClass]="{ 'is-invalid': (submitted || f.title.touched) && f.title.errors }" />
+                    <div *ngIf="((submitted || f.title.touched) && f.title.errors)" class="invalid-feedback">
+                        <div *ngIf="f.title.errors.required">Title is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="note" class="col-sm-2 col-form-label">Note</label>
+                <div class="col-sm-10">
+                    <input type="text" formControlName="note" class="form-control" [ngClass]="{ 'is-invalid': (submitted || f.note.touched) && f.note.errors }" />
+                    <div *ngIf="((submitted || f.note.touched) && f.note.errors)" class="invalid-feedback">
+                        <div *ngIf="f.note.errors.required">Note is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="priority" class="col-sm-2 control-label">Priority</label>
+                <div class="col-sm-10">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" [value]="priorityValues[0]" id="low-priority" name="priority" formControlName="priority">
+                        <label class="custom-control-label" for="low-priority">Low</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" [value]="priorityValues[1]" id="medium-priority" name="priority" formControlName="priority">
+                        <label class="custom-control-label" for="medium-priority">Medium</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" [value]="priorityValues[2]" id="high-priority" name="priority" formControlName="priority">
+                        <label class="custom-control-label" for="high-priority">High</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="isDone" class="col-sm-2 control-label">Is it done?</label>
+                <div class="col-sm-10">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="custom-check" formControlName="isDone">
+                        <label class="custom-control-label" for="custom-check">Done</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Save
+                </button>
+                <a routerLink="/todos" class="btn btn-link">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

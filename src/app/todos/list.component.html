@@ -1,0 +1,32 @@
+<h1>Todos</h1>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Add Todo</a>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 col-sm-4 col-xs-1 mt-4" *ngFor="let todo of todos">
+            <div class="card border-secondary text-center" [ngClass]="{'text-white bg-secondary': todo.isDone}">
+                <div class="card-header">
+                    <div *ngIf="todo.priority==priorityValues[0]">Low Priority</div>
+                    <div *ngIf="todo.priority==priorityValues[1]">Medium Priority</div>
+                    <div *ngIf="todo.priority==priorityValues[2]">High Priority</div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <s *ngIf="todo.isDone">{{todo.title}}</s>
+                        <div *ngIf="!todo.isDone">{{todo.title}}</div>
+                    </h5>
+                    <h6 class="card-title">
+                        <s *ngIf="todo.isDone">{{todo.note}}</s>
+                        <div *ngIf="!todo.isDone">{{todo.note}}</div>
+                    </h6>
+                    <p class=""></p>
+                    <a routerLink="edit/{{todo.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
+                    <button (click)="deleteTodo(todo.id)" class="btn btn-sm btn-danger btn-delete-todo" [disabled]="todo.isDeleting">
+                        <span *ngIf="todo.isDeleting" class="spinner-border spinner-border-sm"></span>
+                        <span *ngIf="!todo.isDeleting">Delete</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
